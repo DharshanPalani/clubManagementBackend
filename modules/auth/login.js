@@ -1,4 +1,4 @@
-import pool from "../../db.js";
+import pool from "../../db.ts";
 import jwt from "jsonwebtoken";
 
 const login = async (request, response) => {

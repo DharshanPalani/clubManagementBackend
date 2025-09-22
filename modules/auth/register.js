@@ -1,4 +1,4 @@
-import pool from "../../db.js";
+import pool from "../../db.ts";
 
 const register = async (request, response) => {
   const { username, password } = request.body;

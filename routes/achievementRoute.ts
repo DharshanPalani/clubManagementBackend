@@ -1,6 +1,6 @@
 import express from "express";
 
-import { AchievementImp } from "../modules/achievements/AchievementImp";
+import { AchievementImp } from "../modules/achievements/AchievementImp.ts";
 
 const achievementRoute = express.Router();
 

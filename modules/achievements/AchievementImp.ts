@@ -1,8 +1,8 @@
-import { Request, Response } from "express";
-import { IAchievement } from "./IAchievement";
+import type { Request, Response } from "express";
+import type { IAchievement } from "./IAchievement.ts";
 
 export class AchievementImp implements IAchievement {
-  async addAchievement(request: Request, response: Response) {
+  addAchievement(request: Request, response: Response): Promise<void> {
     throw new Error("Method not implemented.");
   }
 }

@@ -1,0 +1,38 @@
+import express from "express";
+import pool from "./db.ts";
+import type { RequestHandler } from "express";
+import authRoute from "./routes/auth.js";
+import achievementRoute from "./routes/achievementRoute.ts";
+import cookieParser from "cookie-parser";
+
+const app = express();
+
+app.use(express.json());
+app.use(cookieParser() as RequestHandler);
+
+await pool.query(
+  `CREATE TABLE IF NOT EXISTS users(
+        id SERIAL PRIMARY KEY,
+        username TEXT UNIQUE NOT NULL,
+        password TEXT NOT NULL
+      )`
+);
+
+// await pool.query(`DROP TABLE achievements`);
+
+await pool.query(
+  `CREATE TABLE IF NOT EXISTS achievements(
+        id SERIAL PRIMARY KEY,
+        user_id INT NOT NULL,
+        instagram_post_url TEXT,
+        title TEXT,
+        description TEXT
+      )`
+);
+
+app.use("/auth", authRoute);
+app.use("/user", achievementRoute);
+
+app.listen(3000, () => {
+  console.log("Server running on http://localhost:3000");
+});
