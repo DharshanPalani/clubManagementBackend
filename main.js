@@ -17,6 +17,18 @@ pool.query(
   )`
 );
 
+// pool.query(`DROP TABLE achievements`);
+
+pool.query(
+  `CREATE TABLE IF NOT EXISTS achievements(
+    id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
+    instagram_post_url TEXT,
+    title TEXT,
+    description TEXT
+  )`
+);
+
 app.get("/", () => {
   console.log("Someone hit here");
 });
