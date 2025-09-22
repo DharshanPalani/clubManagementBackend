@@ -1,8 +1,11 @@
 import pool from "../../db.ts";
 import jwt from "jsonwebtoken";
+import type { Request, Response } from "express";
 
-const login = async (request, response) => {
+const login = async (request: Request, response: Response) => {
   const { username, password } = request.body;
+
+  const secretKey: any = process.env.TOKEN_SECRET_KEY;
   try {
     const userExist = await pool.query(
       `SELECT * FROM users WHERE username = $1`,
@@ -15,7 +18,7 @@ const login = async (request, response) => {
             id: userExist.rows[0].id,
             username: userExist.rows[0].username,
           },
-          process.env.TOKEN_SECRET_KEY,
+          secretKey,
           { expiresIn: "10m" }
         );
         response.cookie("token", token, {

@@ -1,6 +1,7 @@
 import pool from "../../db.ts";
+import type { Request, Response } from "express";
 
-const register = async (request, response) => {
+const register = async (request: Request, response: Response) => {
   const { username, password } = request.body;
   try {
     const isUserAvailable = await pool.query(

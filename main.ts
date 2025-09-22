@@ -1,7 +1,7 @@
 import express from "express";
 import pool from "./db.ts";
 import type { RequestHandler } from "express";
-import authRoute from "./routes/auth.js";
+import authRoute from "./routes/auth.ts";
 import achievementRoute from "./routes/achievementRoute.ts";
 import cookieParser from "cookie-parser";
 
