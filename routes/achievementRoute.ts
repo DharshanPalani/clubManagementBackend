@@ -13,4 +13,9 @@ achievementRoute.post(
   achievementController.addAchievement.bind(achievementController)
 );
 
+achievementRoute.post(
+  "/achievement/get",
+  achievementController.fetchAchievements.bind(achievementController)
+);
+
 export default achievementRoute;
