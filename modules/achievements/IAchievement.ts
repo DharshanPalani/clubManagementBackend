@@ -1,5 +1,5 @@
-import type { Request, Response } from "express";
+import type { Response } from "express";
 
 export interface IAchievement {
-  addAchievement(request: Request, response: Response): Promise<void>;
+  addAchievement(request: any, response: Response): Promise<void>;
 }
