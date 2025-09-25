@@ -4,8 +4,16 @@ import type { RequestHandler } from "express";
 import authRoute from "./routes/auth.ts";
 import achievementRoute from "./routes/achievementRoute.ts";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 const app = express();
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 app.use(cookieParser() as RequestHandler);
