@@ -38,6 +38,23 @@ await pool.query(
       )`
 );
 
+await pool.query(
+  `CREATE TABLE IF NOT EXISTS roles(
+        id SERIAL PRIMARY KEY,
+        role TEXT NOT NULL
+      )`
+);
+
+// await pool.query(`DROP TABLE profile`);
+
+await pool.query(
+  `CREATE TABLE IF NOT EXISTS profile(
+        id SERIAL PRIMARY KEY,
+        user_id INT NOT NULL,
+        role_id INT NOT NULL
+      )`
+);
+
 app.use("/auth", authRoute);
 app.use("/user", achievementRoute);
 

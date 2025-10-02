@@ -5,37 +5,63 @@ import type { Request, Response } from "express";
 const login = async (request: Request, response: Response) => {
   const { username, password } = request.body;
 
-  const secretKey: any = process.env.TOKEN_SECRET_KEY;
+  const secretKey = process.env.TOKEN_SECRET_KEY;
+  if (!secretKey) {
+    return response.status(500).send("Server configuration error");
+  }
+
   try {
-    const userExist = await pool.query(
+    const userResult = await pool.query(
       `SELECT * FROM users WHERE username = $1`,
       [username]
     );
-    if (userExist.rows.length > 0) {
-      if (password === userExist.rows[0].password) {
-        const token = jwt.sign(
-          {
-            id: userExist.rows[0].id,
-            username: userExist.rows[0].username,
-          },
-          secretKey,
-          { expiresIn: "10m" }
-        );
-        response.cookie("token", token, {
-          httpOnly: true,
-          secure: false,
-        });
-        return response.send(
-          "Welcome " + username + " btw ya password is " + password
-        );
-      } else {
-        response.status(201).send("Wrong password");
-      }
-    } else {
-      response.status(201).send("User does not exist");
+
+    if (userResult.rows.length === 0) {
+      return response.status(404).send("User does not exist");
     }
+
+    const user = userResult.rows[0];
+
+    if (password !== user.password) {
+      return response.status(401).send("Wrong password");
+    }
+
+    const profileResult = await pool.query(
+      `SELECT * FROM profile WHERE user_id = $1`,
+      [user.id]
+    );
+
+    let profileId;
+    if (profileResult.rows.length === 0) {
+      console.log("Creating new profile entry");
+      const insertProfile = await pool.query(
+        `INSERT INTO profile (user_id, role_id) VALUES ($1, $2) RETURNING *`,
+        [user.id, 0]
+      );
+      profileId = insertProfile.rows[0].id;
+    } else {
+      profileId = profileResult.rows[0].id;
+    }
+
+    const token = jwt.sign(
+      {
+        id: user.id,
+        username: user.username,
+        profile_id: profileId,
+      },
+      secretKey,
+      { expiresIn: "10m" }
+    );
+
+    response.cookie("token", token, {
+      httpOnly: true,
+      secure: false,
+    });
+
+    return response.send(`Welcome ${username}, profile id is ${profileId}`);
   } catch (error) {
-    response.status(404).send(error);
+    console.error(error);
+    return response.status(500).send("Server error");
   }
 };
 
