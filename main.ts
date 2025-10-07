@@ -40,6 +40,8 @@ await pool.query(
       )`
 );
 
+
+await pool.query(`DROP TABLE roles`);
 await pool.query(
   `CREATE TABLE IF NOT EXISTS roles(
         id SERIAL PRIMARY KEY,
@@ -47,7 +49,6 @@ await pool.query(
       )`
 );
 
-// await pool.query(`DROP TABLE profile`);
 
 await pool.query(
   `CREATE TABLE IF NOT EXISTS profile(

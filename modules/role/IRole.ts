@@ -10,4 +10,13 @@ export interface IRole {
    *  @param response 
    * */
   addRole(request : Request, response : Response) : Promise<void>;
+
+  /** 
+   * This function returns the specified role
+   * The parms has the :id and the request is used to get that
+   * Select from the roles table and return on success
+   * */
+
+  getRole(request : Request, response : Response) : Promise<void>;
+
 }
