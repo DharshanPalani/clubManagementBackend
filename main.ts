@@ -6,6 +6,7 @@ import achievementRoute from "./routes/achievementRoute.ts";
 import profileRoute from "./routes/profileRoute.ts";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import roleRoute from "./routes/roleRoute.ts";
 
 const app = express();
 
@@ -59,7 +60,7 @@ await pool.query(
 app.use("/auth", authRoute);
 app.use("/user", achievementRoute);
 app.use("/user", profileRoute);
-
+app.use("/user", roleRoute);
 app.listen(3000, () => {
   console.log("Server running on http://localhost:3000");
 });
