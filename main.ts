@@ -20,6 +20,12 @@ app.use(
 app.use(express.json());
 app.use(cookieParser() as RequestHandler);
 
+//await pool.query(`DROP TABLE users`);
+//await pool.query(`DROP TABLE achievements`);
+//await pool.query(`DROP TABLE roles`);
+//await pool.query(`DROP TABLE profile`);
+
+
 await pool.query(
   `CREATE TABLE IF NOT EXISTS users(
         id SERIAL PRIMARY KEY,
@@ -28,7 +34,7 @@ await pool.query(
       )`
 );
 
-// await pool.query(`DROP TABLE achievements`);
+
 
 await pool.query(
   `CREATE TABLE IF NOT EXISTS achievements(
