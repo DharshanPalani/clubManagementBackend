@@ -1,17 +1,16 @@
 import type { Request, Response } from "express";
 import type { IRole } from "./IRole.ts";
 import pool from "../../db.ts";
+import useGetRoleWithID from "../../hooks/useGetRoleWithID.ts";
 
 export class RoleImp implements IRole {
   async getRole(request: Request, response: Response): Promise<void> {
     try {
       const { roleID } = request.params;
-      const result = await pool.query(
-      `SELECT * FROM roles WHERE id = $1`,
-      [roleID]
-      )
+      
+      const result = await useGetRoleWithID(parseInt(roleID));
 
-      response.status(201).json(result.rows[0]);
+      response.status(201).json(result);
     } catch(error : any) {
       response.send("Error daw " + error); 
     }
