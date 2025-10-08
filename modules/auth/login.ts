@@ -36,7 +36,7 @@ const login = async (request: Request, response: Response) => {
       console.log("Creating new profile entry");
       const insertProfile = await pool.query(
         `INSERT INTO profile (user_id, role_id) VALUES ($1, $2) RETURNING *`,
-        [user.id, 0]
+        [user.id, 1]
       );
       profileId = insertProfile.rows[0].id;
     } else {
