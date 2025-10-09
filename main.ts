@@ -7,6 +7,7 @@ import profileRoute from "./routes/profileRoute.ts";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import roleRoute from "./routes/roleRoute.ts";
+import domainRoute from "./routes/domainRoute.ts";
 
 const app = express();
 
@@ -79,6 +80,8 @@ app.use("/auth", authRoute);
 app.use("/user", achievementRoute);
 app.use("/user", profileRoute);
 app.use("/user", roleRoute);
+app.use("/admin", domainRoute);
+
 app.listen(3000, () => {
   console.log("Server running on http://localhost:3000");
 });
