@@ -28,41 +28,53 @@ app.use(cookieParser() as RequestHandler);
 
 await pool.query(
   `CREATE TABLE IF NOT EXISTS users(
-        id SERIAL PRIMARY KEY,
-        username TEXT UNIQUE NOT NULL,
-        password TEXT NOT NULL
-      )`
+id SERIAL PRIMARY KEY,
+username TEXT UNIQUE NOT NULL,
+password TEXT NOT NULL
+)`
 );
-
-
 
 await pool.query(
   `CREATE TABLE IF NOT EXISTS achievements(
-        id SERIAL PRIMARY KEY,
-        user_id INT NOT NULL,
-        instagram_post_url TEXT,
-        title TEXT,
-        description TEXT
-      )`
+id SERIAL PRIMARY KEY,
+user_id INT NOT NULL,
+instagram_post_url TEXT,
+title TEXT,
+description TEXT
+)`
 );
-
 
 await pool.query(
   `CREATE TABLE IF NOT EXISTS roles(
-        id SERIAL PRIMARY KEY,
-        role TEXT NOT NULL
-      )`
+id SERIAL PRIMARY KEY,
+role TEXT NOT NULL
+)`
+);
+
+await pool.query(
+  `CREATE TABLE IF NOT EXISTS profile(
+id SERIAL PRIMARY KEY,
+user_id INT NOT NULL,
+role_id INT NOT NULL
+)`
+);
+
+await pool.query(
+  `CREATE TABLE IF NOT EXISTS domains(
+id SERIAL PRIMARY KEY,
+domain_name TEXT NOT NULL,
+lead_user_id INT NOT NULL
+)`
 );
 
 
 await pool.query(
-  `CREATE TABLE IF NOT EXISTS profile(
-        id SERIAL PRIMARY KEY,
-        user_id INT NOT NULL,
-        role_id INT NOT NULL
-      )`
+  `CREATE TABLE IF NOT EXISTS members(
+id SERIAL PRIMARY KEY,
+member_id INT NOT NULL,
+domains_id INT[]
+)`
 );
-
 app.use("/auth", authRoute);
 app.use("/user", achievementRoute);
 app.use("/user", profileRoute);
