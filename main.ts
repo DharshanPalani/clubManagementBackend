@@ -8,6 +8,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import roleRoute from "./routes/roleRoute.ts";
 import domainRoute from "./routes/domainRoute.ts";
+import memberRouter from "./routes/memberRoute.ts";
 
 const app = express();
 
@@ -68,20 +69,21 @@ lead_user_id INT NOT NULL
 )`
 );
 
-
 await pool.query(
-  `CREATE TABLE IF NOT EXISTS members(
+  `CREATE TABLE IF NOT EXISTS members (
 id SERIAL PRIMARY KEY,
-member_id INT NOT NULL,
-domains_id INT[]
+member_id INT NOT NULL REFERENCES users(id),
+domain_id INT NOT NULL REFERENCES domains(id),
+UNIQUE (member_id, domain_id)
 )`
 );
+
 app.use("/auth", authRoute);
 app.use("/user", achievementRoute);
 app.use("/user", profileRoute);
 app.use("/user", roleRoute);
 app.use("/admin", domainRoute);
-
+app.use("/admin", memberRouter);
 app.listen(3000, () => {
   console.log("Server running on http://localhost:3000");
 });

@@ -1,7 +1,6 @@
 import type { Request, Response } from "express";
 import type { IDomain } from "./IDomain.ts";
 import pool from "../../db.ts";
-import domainRoute from "../../routes/domainRoute.ts";
 
 export class DomainImp implements IDomain {
   async getDomainWithLeadId(request: any, response: Response): Promise<void> {
