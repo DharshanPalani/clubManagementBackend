@@ -26,13 +26,13 @@ app.use(cookieParser() as RequestHandler);
 //await pool.query(`DROP TABLE achievements`);
 //await pool.query(`DROP TABLE roles`);
 //await pool.query(`DROP TABLE profile`);
-
-
 await pool.query(
   `CREATE TABLE IF NOT EXISTS users(
 id SERIAL PRIMARY KEY,
 username TEXT UNIQUE NOT NULL,
-password TEXT NOT NULL
+password TEXT NOT NULL,
+phone VARCHAR(20),
+email VARCHAR(25)
 )`
 );
 

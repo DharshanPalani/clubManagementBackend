@@ -15,8 +15,15 @@ export interface IProfile {
   /**
    * This function is a GET which returns all the profile data of the auth user
    * The body.user will contain user ID where it uses that and returns the row with that id
-   * @param request 
-   * @param response 
-  */
+   * @param request
+   * @param response
+   */
   getProfileData(request: any, response: Response): Promise<void>;
+
+  updateProfileEmailAndNumber(
+    request: Request,
+    response: Response
+  ): Promise<void>;
+
+  getProfileEmailAndNumber(request: any, response: Response): Promise<void>;
 }

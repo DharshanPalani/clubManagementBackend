@@ -18,4 +18,16 @@ profileRoute.get(
   profileController.getProfileData.bind(profileController)
 );
 
+profileRoute.post(
+  "/profile/updatePhoneEmail",
+  authenticateToken,
+  profileController.updateProfileEmailAndNumber.bind(profileController)
+);
+
+profileRoute.get(
+  "/profile/getPhoneEmail",
+  authenticateToken,
+  profileController.getProfileEmailAndNumber.bind(profileController)
+);
+
 export default profileRoute;
