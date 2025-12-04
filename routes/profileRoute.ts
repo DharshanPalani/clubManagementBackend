@@ -6,28 +6,22 @@ const profileRoute = express.Router();
 
 const profileController = new ProfileImp();
 
-profileRoute.post(
-  "/profile/updateRole",
-  authenticateToken,
-  profileController.updateProfileRole.bind(profileController)
-);
-
 profileRoute.get(
-  "/profile/getData",
+  "/profile/getProfile",
   authenticateToken,
   profileController.getProfileData.bind(profileController)
 );
 
 profileRoute.post(
-  "/profile/updatePhoneEmail",
+  "/profile/updateProfile",
   authenticateToken,
-  profileController.updateProfileEmailAndNumber.bind(profileController)
+  profileController.updateProfile.bind(profileController)
 );
 
-profileRoute.get(
-  "/profile/getPhoneEmail",
+profileRoute.post(
+  "/profile/registerProfile",
   authenticateToken,
-  profileController.getProfileEmailAndNumber.bind(profileController)
+  profileController.registerProfile.bind(profileController)
 );
 
 export default profileRoute;

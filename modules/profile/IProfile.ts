@@ -10,7 +10,9 @@ export interface IProfile {
    * @param request
    * @param response
    */
-  updateProfileRole(request: Request, response: Response): Promise<void>;
+  updateProfile(request: Request, response: Response): Promise<void>;
+
+  registerProfile(request: any, response: Response): Promise<void>;
 
   /**
    * This function is a GET which returns all the profile data of the auth user
@@ -19,11 +21,4 @@ export interface IProfile {
    * @param response
    */
   getProfileData(request: any, response: Response): Promise<void>;
-
-  updateProfileEmailAndNumber(
-    request: Request,
-    response: Response
-  ): Promise<void>;
-
-  getProfileEmailAndNumber(request: any, response: Response): Promise<void>;
 }
