@@ -5,11 +5,15 @@ import authenticateToken from "../authenticateToken.ts";
 const domainRoute = express.Router();
 const domainController = new DomainImp();
 
-domainRoute.post("/domain/addDomain" , authenticateToken, domainController.addDomain.bind(domainController));
+domainRoute.post(
+  "/domain/addDomain",
+  authenticateToken,
+  domainController.addDomain.bind(domainController)
+);
 
-domainRoute.get("/domain/getDomain/:domain_id", authenticateToken, domainController.getDomain.bind(domainController));
-
-domainRoute.get("/domain/getDomain/", authenticateToken, domainController.getDomainWithLeadId.bind(domainController));
-
+domainRoute.get(
+  "/domain/getDomain/:domain_id",
+  authenticateToken,
+  domainController.getDomain.bind(domainController)
+);
 export default domainRoute;
-
