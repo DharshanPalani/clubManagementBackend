@@ -9,6 +9,7 @@ import cors from "cors";
 import roleRoute from "./routes/roleRoute.ts";
 import domainRoute from "./routes/domainRoute.ts";
 import memberRouter from "./routes/memberRoute.ts";
+import schemaExecutor from "./schemaExecutor.ts";
 
 const app = express();
 
@@ -21,6 +22,8 @@ app.use(
 
 app.use(express.json());
 app.use(cookieParser() as RequestHandler);
+
+schemaExecutor(true);
 
 app.use("/auth", authRoute);
 app.use("/user", achievementRoute);
