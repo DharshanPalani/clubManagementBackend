@@ -10,6 +10,7 @@ import roleRoute from "./routes/roleRoute.ts";
 import domainRoute from "./routes/domainRoute.ts";
 import memberRouter from "./routes/memberRoute.ts";
 import schemaExecutor from "./schemaExecutor.ts";
+import clubRouter from "./routes/clubRoute.ts";
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.use("/user", profileRoute);
 app.use("/user", roleRoute);
 app.use("/admin", domainRoute);
 app.use("/admin", memberRouter);
+app.use("/admin", clubRouter);
 app.listen(3000, () => {
   console.log("Server running on http://localhost:3000");
 });
