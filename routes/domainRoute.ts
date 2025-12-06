@@ -12,8 +12,7 @@ domainRoute.post(
 );
 
 domainRoute.get(
-  "/domain/getDomain/:domain_id",
-  authenticateToken,
+  "/domain/getDomain/:domainID",
   domainController.getDomain.bind(domainController)
 );
 export default domainRoute;
