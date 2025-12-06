@@ -14,7 +14,6 @@ roleRoute.post(
 );
 roleRoute.get(
   "/role/getRole/:roleID",
-  authenticateToken,
   roleController.getRole.bind(roleController)
 );
 export default roleRoute;
