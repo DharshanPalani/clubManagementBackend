@@ -8,7 +8,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import roleRoute from "./routes/roleRoute.ts";
 import domainRoute from "./routes/domainRoute.ts";
-import memberRouter from "./routes/memberRoute.ts";
+import memberRouter from "./modules/members/memberRoute.ts";
 import schemaExecutor from "./schemaExecutor.ts";
 import clubRouter from "./routes/clubRoute.ts";
 import leadRoute from "./modules/lead/leadRoute.ts";
