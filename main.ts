@@ -11,6 +11,7 @@ import domainRoute from "./routes/domainRoute.ts";
 import memberRouter from "./routes/memberRoute.ts";
 import schemaExecutor from "./schemaExecutor.ts";
 import clubRouter from "./routes/clubRoute.ts";
+import leadRoute from "./modules/lead/leadRoute.ts";
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.use("/user", roleRoute);
 app.use("/admin", domainRoute);
 app.use("/admin", memberRouter);
 app.use("/admin", clubRouter);
+app.use("/user", leadRoute);
 app.listen(3000, () => {
   console.log("Server running on http://localhost:3000");
 });
