@@ -12,6 +12,7 @@ import memberRouter from "./modules/members/memberRoute.ts";
 import schemaExecutor from "./schemaExecutor.ts";
 import clubRouter from "./routes/clubRoute.ts";
 import leadRoute from "./modules/lead/leadRoute.ts";
+import headRoute from "./modules/head/headRoute.ts";
 
 const app = express();
 
@@ -19,7 +20,7 @@ app.use(
   cors({
     origin: "http://localhost:5173",
     credentials: true,
-  })
+  }),
 );
 
 app.use(express.json());
@@ -31,10 +32,11 @@ app.use("/auth", authRoute);
 app.use("/user", achievementRoute);
 app.use("/user", profileRoute);
 app.use("/user", roleRoute);
-app.use("/admin", domainRoute);
-app.use("/admin", memberRouter);
-app.use("/admin", clubRouter);
+app.use("/user", domainRoute);
+app.use("/user", memberRouter);
+app.use("/user", clubRouter);
 app.use("/user", leadRoute);
+app.use("/user", headRoute);
 app.listen(3000, () => {
   console.log("Server running on http://localhost:3000");
 });
