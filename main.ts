@@ -11,8 +11,8 @@ import domainRoute from "./routes/domainRoute.ts";
 import memberRouter from "./modules/members/memberRoute.ts";
 import schemaExecutor from "./schemaExecutor.ts";
 import clubRouter from "./routes/clubRoute.ts";
-import leadRoute from "./modules/lead/leadRoute.ts";
 import headRoute from "./modules/head/headRoute.ts";
+import { router as leadRoute } from "./modules/lead/lead.routes.ts";
 
 const app = express();
 
