@@ -1,9 +1,7 @@
 import express from "express";
-import pool from "./db.ts";
 import type { RequestHandler } from "express";
 import authRoute from "./routes/auth.ts";
 import achievementRoute from "./routes/achievementRoute.ts";
-import profileRoute from "./routes/profileRoute.ts";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import roleRoute from "./routes/roleRoute.ts";
@@ -13,6 +11,7 @@ import schemaExecutor from "./schemaExecutor.ts";
 import clubRouter from "./routes/clubRoute.ts";
 import headRoute from "./modules/head/headRoute.ts";
 import { router as leadRoute } from "./modules/lead/lead.routes.ts";
+import { router as profileRoute } from "./modules/profile/profile.routes.ts";
 
 const app = express();
 
