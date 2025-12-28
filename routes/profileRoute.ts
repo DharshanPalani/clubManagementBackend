@@ -1,27 +1,27 @@
-import express from "express";
-import { ProfileImp } from "../modules/profile/ProfileImp.ts";
-import authenticateToken from "../authenticateToken.ts";
+// import express from "express";
+// import { ProfileImp } from "../modules/profile/ProfileImp.ts";
+// import authenticateToken from "../authenticateToken.ts";
 
-const profileRoute = express.Router();
+// const profileRoute = express.Router();
 
-const profileController = new ProfileImp();
+// const profileController = new ProfileImp();
 
-profileRoute.get(
-  "/profile/getProfile",
-  authenticateToken,
-  profileController.getProfileData.bind(profileController)
-);
+// profileRoute.get(
+//   "/profile/getProfile",
+//   authenticateToken,
+//   profileController.getProfileData.bind(profileController)
+// );
 
-profileRoute.post(
-  "/profile/updateProfile",
-  authenticateToken,
-  profileController.updateProfile.bind(profileController)
-);
+// profileRoute.post(
+//   "/profile/updateProfile",
+//   authenticateToken,
+//   profileController.updateProfile.bind(profileController)
+// );
 
-profileRoute.post(
-  "/profile/registerProfile",
-  authenticateToken,
-  profileController.registerProfile.bind(profileController)
-);
+// profileRoute.post(
+//   "/profile/registerProfile",
+//   authenticateToken,
+//   profileController.registerProfile.bind(profileController)
+// );
 
-export default profileRoute;
+// export default profileRoute;

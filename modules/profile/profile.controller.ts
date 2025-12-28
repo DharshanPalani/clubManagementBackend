@@ -1,5 +1,5 @@
 import { ProfileService } from "./profile.service.ts";
-import type { Request, Response } from "express";
+import type { Response } from "express";
 export class ProfileController {
   private profileService: ProfileService;
   constructor(profileService?: ProfileService) {

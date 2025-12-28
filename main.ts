@@ -1,6 +1,5 @@
 import express from "express";
 import type { RequestHandler } from "express";
-import authRoute from "./routes/auth.ts";
 import achievementRoute from "./routes/achievementRoute.ts";
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -12,6 +11,7 @@ import clubRouter from "./routes/clubRoute.ts";
 import headRoute from "./modules/head/headRoute.ts";
 import { router as leadRoute } from "./modules/lead/lead.routes.ts";
 import { router as profileRoute } from "./modules/profile/profile.routes.ts";
+import { router as authRoute } from "./modules/auth/auth.routes.ts";
 
 const app = express();
 
