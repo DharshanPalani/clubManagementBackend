@@ -2,14 +2,14 @@ import type { Request, Response } from "express";
 import type { IRole } from "./IRole.ts";
 import pool from "../../db.ts";
 
-export class RoleImp implements IRole {
+export class RoleImp {
   async getRole(request: Request, response: Response): Promise<void> {
     try {
       const { roleID } = request.params;
 
       const result = await pool.query(
         `SELECT * FROM roles WHERE role_id = $1`,
-        [roleID]
+        [roleID],
       );
 
       response.send(result.rows[0]);
@@ -22,7 +22,7 @@ export class RoleImp implements IRole {
       const { newRole } = request.body;
       const result = await pool.query(
         `INSERT INTO roles (role_name) VALUES($1) RETURNING *`,
-        [newRole]
+        [newRole],
       );
       console.log(newRole);
 
