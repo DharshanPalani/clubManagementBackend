@@ -10,7 +10,7 @@ export class ProfileRepository {
     if (checkProfileExistance.rows.length > 0) {
       throw new Error("Profile already exits for the user ID: " + user_id);
     }
-    const { rows } = await pool.query(query, [user_id]);
+    const { rows } = await pool.query(query, [user_id, club_id, role_id]);
 
     return rows;
   }

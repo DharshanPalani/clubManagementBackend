@@ -1,10 +1,12 @@
 import type { Request, Response } from "express";
 import { AuthService } from "./auth.service.ts";
+import { ProfileService } from "../profile/profile.service.ts";
 
 export class AuthController {
   private service = new AuthService();
+  private profileService = new ProfileService();
 
-  async login(req: Request, res: Response): Promise<void> {
+  async login(req: Request, res: Response) {
     try {
       const { username, password } = req.body;
 
@@ -21,15 +23,29 @@ export class AuthController {
     }
   }
 
-  async register(req: Request, res: Response): Promise<void> {
+  async register(req: Request, res: Response) {
     try {
-      const { username, password } = req.body;
+      const { username, password, club_id, role_id } = req.body;
 
-      const userId = await this.service.register(username, password);
+      const userId: any = await this.service.register(username, password);
+
+      console.log(userId);
+      console.log(club_id);
+      console.log(role_id);
+
+      if (!userId) {
+        return;
+      }
+      const profile = await this.profileService.registerProfile(
+        userId,
+        club_id,
+        role_id,
+      );
 
       res.status(201).json({
-        message: "Registered successfully",
+        message: "Registered successfully and profile",
         userId,
+        profile,
       });
     } catch (error: any) {
       res.status(400).json({ message: error.message });
