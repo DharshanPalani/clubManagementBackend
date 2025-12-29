@@ -14,4 +14,11 @@ export class ProfileRepository {
 
     return rows;
   }
+
+  async getProfileWithUserID(user_id: number) {
+    const query = `SELECT * FROM profiles WHERE user_id = $1`;
+    const profileData = await pool.query(query, [user_id]);
+
+    return profileData.rows[0];
+  }
 }

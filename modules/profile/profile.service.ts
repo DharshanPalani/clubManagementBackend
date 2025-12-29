@@ -13,4 +13,12 @@ export class ProfileService {
       throw new Error("Error at profile services: " + error);
     }
   }
+
+  async getProfile(user_id: number) {
+    try {
+      return await this.profileRepo.getProfileWithUserID(user_id);
+    } catch (error: any) {
+      throw new Error("Error at profile services: " + error);
+    }
+  }
 }
