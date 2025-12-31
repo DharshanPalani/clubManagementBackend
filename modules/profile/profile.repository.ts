@@ -1,5 +1,5 @@
 import pool from "../../db.ts";
-import { Profile } from "./profile.model.ts";
+import type { Profile } from "./profile.model.ts";
 
 export class ProfileRepository {
   async createProfile(

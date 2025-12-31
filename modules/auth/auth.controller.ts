@@ -52,10 +52,10 @@ export class AuthController {
     }
   }
 
-  async me(req: any, res: Response): Promise<void> {
+  async me(req: any, res: Response) {
     res.json({
-      user: req.user.id,
       username: req.user.username,
+      profile_id: req.user.profile,
       isAuth: true,
     });
   }
