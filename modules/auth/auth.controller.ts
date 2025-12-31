@@ -29,10 +29,6 @@ export class AuthController {
 
       const userId: any = await this.service.register(username, password);
 
-      console.log(userId);
-      console.log(club_id);
-      console.log(role_id);
-
       if (!userId) {
         return;
       }
@@ -54,8 +50,9 @@ export class AuthController {
 
   async me(req: any, res: Response) {
     res.json({
+      id: req.user.id,
+      profile_id: req.user.profile.profile_id,
       username: req.user.username,
-      profile_id: req.user.profile,
       isAuth: true,
     });
   }

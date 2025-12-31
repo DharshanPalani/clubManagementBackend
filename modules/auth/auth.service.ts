@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import { AuthRepository } from "./auth.repository.ts";
 import { ProfileService } from "../profile/profile.service.ts";
+import { profile } from "node:console";
 
 export class AuthService {
   private repo = new AuthRepository();
@@ -21,17 +22,19 @@ export class AuthService {
       throw new Error("Invalid password");
     }
 
-    const userProfile = await this.profileService.getProfile(user.id);
+    const userProfile = await this.profileService.getProfile(user.id, false);
 
     if (!userProfile) {
       throw new Error("Error at fetching profile data");
     }
 
-    const token = jwt.sign(
-      { id: user.id, username: user.username, profile: userProfile },
-      secretKey,
-      { expiresIn: "10m" },
-    );
+    const tokenPayload = {
+      id: user.id,
+      username: user.username,
+      profile_id: userProfile.profile_id,
+    };
+
+    const token = jwt.sign(tokenPayload, secretKey, { expiresIn: "10m" });
 
     return token;
   }

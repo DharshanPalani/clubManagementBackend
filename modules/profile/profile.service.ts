@@ -14,9 +14,13 @@ export class ProfileService {
     }
   }
 
-  async getProfile(user_id: number) {
+  async getProfile(id: number, isProfile: boolean) {
     try {
-      return await this.profileRepo.getProfileWithUserID(user_id);
+      if (isProfile) {
+        return await this.profileRepo.getProfileWithProfileID(id);
+      } else {
+        return await this.profileRepo.getProfileWithUserID(id);
+      }
     } catch (error: any) {
       throw new Error("Error at profile services: " + error);
     }

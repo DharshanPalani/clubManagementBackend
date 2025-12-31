@@ -29,4 +29,22 @@ export class ProfileController {
         .send("Error at profile controller registerProfile: " + error);
     }
   }
+
+  async getProfile(request: any, response: Response) {
+    try {
+      const user = request.user;
+      const profile = await this.profileService.getProfile(
+        user.profile_id,
+        true,
+      );
+
+      response
+        .status(201)
+        .json({ message: "Profile data fetch successfully", data: profile });
+    } catch (error: any) {
+      response
+        .status(501)
+        .send("Error at profile controller getProfile: " + error);
+    }
+  }
 }

@@ -10,3 +10,9 @@ router.post(
   authenticateToken,
   controller.registerProfile.bind(controller),
 );
+
+router.get(
+  "/profile/getProfile",
+  authenticateToken,
+  controller.getProfile.bind(controller),
+);

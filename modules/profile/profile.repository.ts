@@ -26,4 +26,11 @@ export class ProfileRepository {
 
     return profileData.rows[0];
   }
+
+  async getProfileWithProfileID(profile_id: number): Promise<Profile> {
+    const query = `SELECT * FROM profiles WHERE profile_id = $1`;
+    const profileData = await pool.query(query, [profile_id]);
+
+    return profileData.rows[0];
+  }
 }
